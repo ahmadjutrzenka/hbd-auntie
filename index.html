@@ -27,7 +27,7 @@
       transform: translate(-50%, -50%);
       text-align: center;
       user-select: none;
-      pointer-events: none; /* klik tetap tembus ke canvas */
+      pointer-events: none; 
       z-index: 1;
     }
 
@@ -48,7 +48,6 @@
       font-size: clamp(2.2rem, 8vw, 4rem);
       font-weight: 400;
       margin-top: 0.05em;
-      /* gradient yang bergerak */
       background: linear-gradient(
         90deg,
         #ffd700,
@@ -90,23 +89,42 @@
     /* ── Hint text ──────────────────────────────────────── */
     .hint {
       position: absolute;
-      bottom: 20px;
+      bottom: 28px;
       left: 50%;
       transform: translateX(-50%);
       margin: 0;
-      color: rgba(255, 255, 255, 0.22);
+      color: rgba(255, 255, 255, 0.9);
       font-family: "Source Sans 3", sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       pointer-events: none;
       white-space: nowrap;
-      animation: fadeHint 3s ease-out 2.5s both;
+      animation: fadeHint 3s ease-out 2.5s both, hintGlow 2.5s ease-in-out 5s infinite;
+      text-shadow:
+        0 0 8px  rgba(255, 200, 255, 0.9),
+        0 0 20px rgba(220, 150, 255, 0.7),
+        0 0 40px rgba(180,  80, 255, 0.4);
     }
 
     @keyframes fadeHint {
       from { opacity: 0; transform: translateX(-50%) translateY(8px); }
       to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    @keyframes hintGlow {
+      0%, 100% {
+        text-shadow:
+          0 0 8px  rgba(255, 200, 255, 0.9),
+          0 0 20px rgba(220, 150, 255, 0.7),
+          0 0 40px rgba(180,  80, 255, 0.4);
+      }
+      50% {
+        text-shadow:
+          0 0 12px rgba(255, 220, 255, 1.0),
+          0 0 35px rgba(255, 120, 255, 0.9),
+          0 0 70px rgba(200,  50, 255, 0.6);
+      }
     }
   </style>
 </head>
